@@ -5,9 +5,11 @@
   "author": "Vitor_Liaz88 <vnla.lic18@uea.edu.br>",
   "license": "MIT",
   "scripts": {
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "jest"
   },
   "devDependencies": {
+    "@types/jest": "^29.2.4",
     "@types/node": "^18.11.11",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "eslint": "^8.0.1",
@@ -17,7 +19,9 @@
     "eslint-plugin-promise": "^6.0.0",
     "git-commit-msg-linter": "^4.4.0",
     "husky": "^8.0.2",
+    "jest": "^29.3.1",
     "lint-staged": "^13.1.0",
+    "ts-jest": "^29.0.3",
     "typescript": "*"
   }
 }

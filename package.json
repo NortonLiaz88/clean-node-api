@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "Vitor_Liaz88 <vnla.lic18@uea.edu.br>",
   "license": "MIT",
+  "scripts": {
+    "prepare": "husky install"
+  },
   "devDependencies": {
     "@types/node": "^18.11.11",
     "@typescript-eslint/eslint-plugin": "^5.0.0",

@@ -29,6 +29,6 @@
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
-    "mongodb": "^4.13.0"
+    "mongodb": "^3"
   }
 }

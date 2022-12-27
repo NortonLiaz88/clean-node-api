@@ -8,9 +8,7 @@ export const MongoHelper = {
       useNewUrlParser: true,
       useUnifiedTopology: true
     })
-    console.log('CLIENT CONNECTED')
     await this.client.db().command({ ping: 1 })
-    console.log('Connected successfully to server')
   },
 
   async disconnect (): Promise<void> {
@@ -19,7 +17,6 @@ export const MongoHelper = {
 
   async getCollection (name: string): Collection {
     const collection = await this.client.db().collection(name)
-    console.log('NEW COLLECTION', collection)
     return collection
   },
 

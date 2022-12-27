@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky install",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "test:verbose": "jest --passWithNoTests --runInBand"
   },
   "devDependencies": {
     "@shelf/jest-mongodb": "^4.1.4",

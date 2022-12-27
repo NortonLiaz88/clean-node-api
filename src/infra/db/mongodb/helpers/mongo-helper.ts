@@ -21,5 +21,10 @@ export const MongoHelper = {
     const collection = await this.client.db().collection(name)
     console.log('NEW COLLECTION', collection)
     return collection
+  },
+
+  map (collection: any): any {
+    const { _id, ...collectionId } = collection
+    return Object.assign({}, collectionId, { id: _id })
   }
 }

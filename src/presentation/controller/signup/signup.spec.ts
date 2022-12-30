@@ -44,7 +44,7 @@ describe('SignUp Controller', () => {
       name: 'valid_name',
       email: 'valid_email',
       password: 'valid_password',
-      passwodConfirmation: 'valid_password'
+      passwordConfirmation: 'valid_password'
     }
   })
 
@@ -66,7 +66,7 @@ describe('SignUp Controller', () => {
       body: {
         email: 'any_email@mal.com',
         password: 'any_password',
-        passwodConfirmation: 'any_password'
+        passwordConfirmation: 'any_password'
       }
     }
     const httpResponse = await sut.handle(httpRequest)
@@ -79,7 +79,7 @@ describe('SignUp Controller', () => {
       body: {
         name: 'name',
         password: 'any_password',
-        passwodConfirmation: 'any_password'
+        passwordConfirmation: 'any_password'
       }
     }
     const httpResponse = await sut.handle(httpRequest)
@@ -92,14 +92,14 @@ describe('SignUp Controller', () => {
       body: {
         name: 'name',
         email: 'any_email@mal.com',
-        passwodConfirmation: 'any_password'
+        passwordConfirmation: 'any_password'
       }
     }
     const httpResponse = await sut.handle(httpRequest)
     expect(httpResponse).toEqual(badRequest(new MissingParamError('password')))
   })
 
-  test('Should return 400 if no passwodConfirmation is provided', async () => {
+  test('Should return 400 if no passwordConfirmation is provided', async () => {
     const { sut } = makeSut()
     const httpRequest = {
       body: {
@@ -109,7 +109,7 @@ describe('SignUp Controller', () => {
       }
     }
     const httpResponse = await sut.handle(httpRequest)
-    expect(httpResponse).toEqual(badRequest(new MissingParamError('passwodConfirmation')))
+    expect(httpResponse).toEqual(badRequest(new MissingParamError('passwordConfirmation')))
   })
 
   test('Should return 400 if an invalid email is provided', async () => {
@@ -127,7 +127,7 @@ describe('SignUp Controller', () => {
         name: 'name',
         email: 'any_email@mal.com',
         password: 'any_password',
-        passwodConfirmation: 'invalid_password'
+        passwordConfirmation: 'invalid_password'
       }
     }
     const httpResponse = await sut.handle(httpRequest)

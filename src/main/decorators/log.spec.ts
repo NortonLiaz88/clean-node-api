@@ -41,7 +41,7 @@ const makeFakeHttpRequest = (): HttpRequest => ({
     name: 'valid_name',
     email: 'valid_email',
     password: 'valid_password',
-    passwodConfirmation: 'valid_password'
+    passwordConfirmation: 'valid_password'
   }
 })
 

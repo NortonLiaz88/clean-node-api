@@ -1,4 +1,4 @@
-import { unauthorized } from './../../helpers/http-helpers'
+import { ok, unauthorized } from './../../helpers/http-helpers'
 import { Authentication } from '../../../data/usecases/autentication/authentication'
 import { InvalidParamError, MissingParamError } from '../../errors'
 import { badRequest, serverError } from '../../helpers/http-helpers'
@@ -37,13 +37,7 @@ export class LoginController implements Controller {
       if (!accessToken) {
         return unauthorized()
       }
-      const httpResponse: HttpResponse = {
-        statusCode: 200,
-        body: {
-          accessToken
-        }
-      }
-      return httpResponse
+      return ok({ accessToken })
     } catch (error) {
       return serverError(error)
     }

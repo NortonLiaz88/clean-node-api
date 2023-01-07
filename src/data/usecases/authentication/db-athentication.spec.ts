@@ -158,6 +158,18 @@ describe('DbAuthentication UseCase', () => {
     )
   })
 
+  test('should throw if UpdateAccessTokenRepository throws ', async () => {
+    const { sut, updateAccessTokenRepositoryStub } = makeSut()
+    jest
+      .spyOn(updateAccessTokenRepositoryStub, 'update')
+      .mockReturnValueOnce(
+        new Promise((resolve, reject) => reject(new Error()))
+      )
+
+    const promise = sut.auth(makeFakeAuthentication())
+    await expect(promise).rejects.toThrow()
+  })
+
   test('should throw if LoadAccountByEmail throws ', async () => {
     const { sut, loadAccounByEmailRepositoryStub } = makeSut()
     jest

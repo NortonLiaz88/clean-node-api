@@ -1,12 +1,11 @@
-import { ok, unauthorized } from './../../helpers/http-helpers'
-import { Authentication } from '../../../data/usecases/autentication/authentication'
-import { badRequest, serverError } from '../../helpers/http-helpers'
+import { Authentication } from '../../../domain/usecase/authentication'
+import { ok, unauthorized, badRequest, serverError } from '../../helpers/http/http-helpers'
 import {
   Controller,
   HttpRequest,
   HttpResponse
 } from '../../protocols'
-import { Validation } from '../../helpers/validators/validation'
+import { Validation } from '../../protocols/validation'
 
 export class LoginController implements Controller {
   private readonly validation: Validation
@@ -23,7 +22,7 @@ export class LoginController implements Controller {
         return badRequest(error)
       }
       const { email, password } = httpRequest.body
-      const accessToken = await this.authentication.auth(email, password)
+      const accessToken = await this.authentication.auth({ email, password })
       if (!accessToken) {
         return unauthorized()
       }

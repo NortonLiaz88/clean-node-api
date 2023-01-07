@@ -36,8 +36,8 @@ export class DbAuthentication implements Authentication {
         account?.password
       )
       if (isValid) {
-        const accessToken = await this.tokenGenerator.generate(account?.id!)
-        await this.updateAccessTokenRepository.update(account?.id!, accessToken)
+        const accessToken = await this.tokenGenerator.encrypt(account?.id!)
+        await this.updateAccessTokenRepository.update(account?.id!, accessToken!)
         return accessToken
       }
     }

@@ -8,4 +8,10 @@ export class AccountMongoRepository implements AddAccountRepository {
     const result = await accoutCollection.insertOne({ ...accountData })
     return MongoHelper.map(result.ops[0])
   }
+
+  async loadByEmail (email: string): Promise<AddAccountModel> {
+    const accoutCollection = await MongoHelper.getCollection('accounts')
+    const account = await accoutCollection.findOne({ email })
+    return account && MongoHelper.map(account)
+  }
 }

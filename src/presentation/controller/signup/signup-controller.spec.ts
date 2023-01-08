@@ -7,7 +7,7 @@ import {
 import { badRequest, ok, serverError } from '../../helpers/http/http-helpers'
 import { Validation } from '../../protocols/validation'
 import { HttpRequest } from '../../protocols'
-import { SignUpController } from './signup'
+import { SignUpController } from './signup-controller'
 const makeAddAccount = (): AddAccount => {
   class AddAccountStub implements AddAccount {
     async add (account: AddAccountModel): Promise<AddAccountModel> {

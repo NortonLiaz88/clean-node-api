@@ -10,20 +10,13 @@ import { Encrypter } from '../../protocols/cryptography/encrypter'
 import { UpdateAccessTokenRepository } from '../../protocols/db/update-access-token-repository'
 
 export class DbAuthentication implements Authentication {
-  private readonly loadAccountByEmailRepository: LoadAccountByEmailRepository
-  private readonly hashComparer: HashComparer
-  private readonly tokenGenerator: Encrypter
-  private readonly updateAccessTokenRepository: UpdateAccessTokenRepository
   constructor (
-    loadAccountByEmailRepository: LoadAccountByEmailRepository,
-    hashComparer: HashComparer,
-    tokenGenerator: Encrypter,
-    updateAccessTokenRepository: UpdateAccessTokenRepository
+    private readonly loadAccountByEmailRepository: LoadAccountByEmailRepository,
+    private readonly hashComparer: HashComparer,
+    private readonly tokenGenerator: Encrypter,
+    private readonly updateAccessTokenRepository: UpdateAccessTokenRepository
   ) {
-    this.loadAccountByEmailRepository = loadAccountByEmailRepository
-    this.hashComparer = hashComparer
-    this.tokenGenerator = tokenGenerator
-    this.updateAccessTokenRepository = updateAccessTokenRepository
+
   }
 
   async auth (authentication: AuthenticationModel): Promise<string | null> {

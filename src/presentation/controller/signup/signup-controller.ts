@@ -6,17 +6,11 @@ import { HttpRequest, HttpResponse } from '../../protocols/http'
 import { Validation } from '../../protocols/validation'
 
 export class SignUpController implements Controller {
-  private readonly addAccount: AddAccount
-  private readonly validation: Validation
-
-  constructor (addAccount: AddAccount, validator: Validation) {
-    this.addAccount = addAccount
-    this.validation = validator
-  }
+  constructor (private readonly addAccount: AddAccount, private readonly validator: Validation) {}
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse > {
     try {
-      const error = this.validation.validate(httpRequest.body)
+      const error = this.validator.validate(httpRequest.body)
       if (error) {
         return badRequest(error)
       }

@@ -1,5 +1,5 @@
 export default {
-  mongoUrl: process.env.MONGO_URL ?? 'mongodb://root:123456@localhost:27017/mydb?authSource=admin',
+  mongoUrl: process.env.MONGO_URL ?? 'mongodb://mongo:27017/clean-node-api',
   port: process.env.PORT ?? 5050,
   jwtSecret: process.env.JWT_SECRET ?? 'tj670==5h'
 }

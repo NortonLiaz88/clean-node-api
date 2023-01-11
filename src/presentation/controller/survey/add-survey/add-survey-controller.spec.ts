@@ -1,4 +1,4 @@
-import { serverError } from './../../../helpers/http/http-helpers'
+import { noContent, serverError } from './../../../helpers/http/http-helpers'
 import { badRequest } from '../../../helpers/http/http-helpers'
 import { HttpRequest } from '../../../protocols'
 import { Validation } from '../../../protocols/validation'
@@ -78,5 +78,12 @@ describe('Login', () => {
     const httpRequest = makeFakeRequest()
     const httpResponse = await sut.handle(httpRequest)
     expect(httpResponse).toEqual(serverError(new Error()))
+  })
+
+  test('Should call Validation with correct values', async () => {
+    const { sut } = makeSut()
+    const httpRequest = makeFakeRequest()
+    const httpResponse = await sut.handle(httpRequest)
+    expect(httpResponse).toEqual(noContent())
   })
 })

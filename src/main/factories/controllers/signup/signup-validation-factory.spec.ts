@@ -1,5 +1,5 @@
-import { RequiredFieldValidation, CompareFieldsValidation, EmailValidation, ValidationComposite } from '../../../../presentation/helpers/validators'
 import { Validation } from '../../../../presentation/protocols/validation'
+import { RequiredFieldValidation, CompareFieldsValidation, EmailValidation, ValidationComposite } from '../../../../validation/validators'
 import { EmailValidatorAdapter } from '../../../adapters/validators/email-validators-adapter'
 import { makeSingUpValidation } from './signup-validation-factory'
 

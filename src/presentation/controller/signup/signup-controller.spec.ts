@@ -1,4 +1,3 @@
-import { EmailInUseError } from './../../errors/email-in-use-error'
 import { AddAccountModel } from '../../../domain/models/account'
 import { AddAccount } from '../../../domain/usecase/add-account'
 import {
@@ -11,6 +10,7 @@ import { Authentication, AuthenticationModel } from '../../../domain/usecase/aut
 import { Validation } from '../../protocols/validation'
 import { HttpRequest } from '../../protocols'
 import { SignUpController } from './signup-controller'
+import { EmailInUseError } from '../../../validation/protocols/email-in-use-error'
 const makeAddAccount = (): AddAccount => {
   class AddAccountStub implements AddAccount {
     async add (account: AddAccountModel): Promise<AddAccountModel> {

@@ -5,7 +5,7 @@ import { Controller } from '../../protocols/contoller'
 import { HttpRequest, HttpResponse } from '../../protocols/http'
 import { Validation } from '../../protocols/validation'
 import { Authentication } from '../../../domain/usecase/authentication'
-import { EmailInUseError } from '../../errors/email-in-use-error'
+import { EmailInUseError } from '../../../validation/protocols/email-in-use-error'
 
 export class SignUpController implements Controller {
   constructor (

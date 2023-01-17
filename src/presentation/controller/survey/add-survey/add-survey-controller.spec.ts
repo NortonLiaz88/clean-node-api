@@ -1,12 +1,11 @@
-import { noContent, serverError } from './../../../helpers/http/http-helpers'
-import { badRequest } from '../../../helpers/http/http-helpers'
-import { HttpRequest } from '../../../protocols'
-import { Validation } from '../../../protocols/validation'
+import { noContent, serverError, badRequest } from '@/presentation/helpers/http/http-helpers'
+import { HttpRequest } from '@/presentation/protocols'
+import { Validation } from '@/presentation/protocols/validation'
 import { AddSurveyController } from './add-survey-controller'
 import {
   AddSurvey,
   AddSurveyModel
-} from '../../../../domain/usecase/add-survey'
+} from '@/domain/usecase/add-survey'
 import MockDate from 'mockdate'
 
 const makeFakeRequest = (): HttpRequest => ({

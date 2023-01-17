@@ -1,5 +1,5 @@
-import { Authentication } from '../../../domain/usecase/authentication'
-import { ok, unauthorized, badRequest, serverError } from '../../helpers/http/http-helpers'
+import { Authentication } from '@/domain/usecase/authentication'
+import { ok, unauthorized, badRequest, serverError } from '@/presentation/helpers/http/http-helpers'
 import {
   Controller,
   HttpRequest,

@@ -1,6 +1,6 @@
-import { SurveyModel } from '../../../../domain/models/survey'
-import { LoadSurveys } from './../../../../domain/usecase/load-surveys'
-import { noContent, ok, serverError } from '../../../helpers/http/http-helpers'
+import { SurveyModel } from '@/domain/models/survey'
+import { LoadSurveys } from '@/domain/usecase/load-surveys'
+import { noContent, ok, serverError } from '@/presentation/helpers/http/http-helpers'
 import { LoadSurveysController } from './load-surveys-controller'
 import MockDate from 'mockdate'
 

@@ -9,9 +9,12 @@ export class AuthMiddleware implements Middleware {
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      const accessToken = httpRequest?.headers?.['x-access-token']
+      const accessToken = httpRequest.headers?.['x-access-token']
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+      console.log(`Access token: ${accessToken}`)
       if (accessToken) {
         const account = await this.loadAccountByToken.load(accessToken, this.role)
+        console.log('Account', account)
         if (account) {
           return ok({ accountId: account.id })
         }

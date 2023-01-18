@@ -38,29 +38,36 @@ describe('Survey Mongo Repository', () => {
         ],
         date: new Date()
       })
-      const survey = await surveyCollection.findOne({ question: 'any_question' })
+      const survey = await surveyCollection.findOne({
+        question: 'any_question'
+      })
       expect(survey).toBeTruthy()
     })
   })
 
   describe('loadAll()', () => {
     test('should load all a survey on success', async () => {
-      await surveyCollection.insertMany([{
-        question: 'any_question',
-        answers: [{
-          image: 'any_image',
-          answer: 'any_answer'
-        }],
-        date: new Date()
-      },
-      {
-        question: 'other_question',
-        answers: [{
-          image: 'other_image',
-          answer: 'other_answer'
-        }],
-        date: new Date()
-      }
+      await surveyCollection.insertMany([
+        {
+          question: 'any_question',
+          answers: [
+            {
+              image: 'any_image',
+              answer: 'any_answer'
+            }
+          ],
+          date: new Date()
+        },
+        {
+          question: 'other_question',
+          answers: [
+            {
+              image: 'other_image',
+              answer: 'other_answer'
+            }
+          ],
+          date: new Date()
+        }
       ])
       const sut = makeSut()
       const surveys = await sut.loadAll()
@@ -73,6 +80,26 @@ describe('Survey Mongo Repository', () => {
       const sut = makeSut()
       const surveys = await sut.loadAll()
       expect(surveys.length).toBe(0)
+    })
+  })
+
+  describe('loadById()', () => {
+    test('should load by id a survey on success', async () => {
+      const res = await surveyCollection.insertOne({
+        question: 'any_question',
+        answers: [
+          {
+            image: 'any_image',
+            answer: 'any_answer'
+          }
+        ],
+        date: new Date()
+      })
+
+      const id = res.ops[0]._id
+      const sut = makeSut()
+      const surveys = await sut.loadById(id)
+      expect(surveys).toBeTruthy()
     })
   })
 })

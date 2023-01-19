@@ -1,4 +1,6 @@
 import { LoadSurveyById } from '@/domain/usecase/load-surveys-by-id'
+import { InvalidParamError } from '@/presentation/errors'
+import { forbidden } from '@/presentation/helpers/http/http-helpers'
 import { Controller, HttpRequest, HttpResponse } from '@/presentation/protocols'
 
 export class SaveSurveyResultController implements Controller {
@@ -7,7 +9,10 @@ export class SaveSurveyResultController implements Controller {
   ) {}
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
-    await this.loadSurveyById.loadById(httpRequest.params.surveyId)
+    const survey = await this.loadSurveyById.loadById(httpRequest.params.surveyId)
+    if (!survey) {
+      return forbidden(new InvalidParamError('surveyId'))
+    }
     // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
     return await new Promise<HttpResponse>((resolve, reject) => resolve({} as HttpResponse))
   }

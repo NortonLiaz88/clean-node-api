@@ -1,4 +1,4 @@
-export const surveysSchema = {
+export const surveysAnswerSchema = {
   type: 'object',
   properties: {
     image: {
@@ -7,6 +7,5 @@ export const surveysSchema = {
     answer: {
       type: 'string'
     }
-  },
-  required: ['email', 'password']
+  }
 }

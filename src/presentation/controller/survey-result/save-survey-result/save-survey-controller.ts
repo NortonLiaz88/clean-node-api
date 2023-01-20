@@ -13,7 +13,11 @@ export class SaveSurveyResultController implements Controller {
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
       const { surveyId } = httpRequest.params
-      const { answer, accountId, date } = httpRequest.body
+      const { answer } = httpRequest.body
+      const { accountId } = httpRequest
+      if (!accountId) {
+        return forbidden(new InvalidParamError('accountId'))
+      }
       const survey = await this.loadSurveyById.loadById(surveyId)
       if (survey) {
         const answers = survey.answers.map(ele => ele.answer)
@@ -24,7 +28,7 @@ export class SaveSurveyResultController implements Controller {
         return forbidden(new InvalidParamError('surveyId'))
       }
       const surveyResult = await this.saveSurveyResult.save({
-        accountId, answer, date, surveyId
+        accountId, answer, date: new Date(), surveyId
       })
       // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
       return ok(surveyResult)

@@ -14,9 +14,9 @@ const makeFakeRequest = (): HttpRequest => ({
   },
   body: {
     answer: 'any_answer',
-    accountId: 'any_account_id',
     date: new Date()
-  }
+  },
+  accountId: 'any_account_id'
 })
 
 const makeFakeSurveyResultResponse = (): SurveyResultModel => {
@@ -113,7 +113,8 @@ describe('SaveSurveyResult Controller', () => {
       },
       body: {
         answer: 'wrong answer'
-      }
+      },
+      accountId: 'any_account_id'
     })
     expect(httpResponse).toEqual(forbidden(new InvalidParamError('answer')))
   })
@@ -124,9 +125,9 @@ describe('SaveSurveyResult Controller', () => {
     await sut.handle(makeFakeRequest())
     expect(saveSurveyResultSpy).toHaveBeenCalledWith({
       surveyId: 'any_survey_id',
-      accountId: 'any_account_id',
       date: new Date(),
-      answer: 'any_answer'
+      answer: 'any_answer',
+      accountId: 'any_account_id'
     })
   })
 

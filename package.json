@@ -12,7 +12,7 @@
     "debug": "nodemon -L --watch dist --inspect=0.0.0.0:9222 --nolazy ./dist/main/server.js",
     "build": "rimraf dist && tsc -p tsconfig-build.json",
     "buid-watch": "tsc --w",
-    "up": "yarn build && docker compose up --force-recreate",
+    "up": "yarn build && docker compose up -d --force-recreate",
     "down": "docker compose down",
     "docker-prune": "docker compose down --rmi all",
     "dev": "sucrase-node src/main/server.ts",

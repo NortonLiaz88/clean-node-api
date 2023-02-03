@@ -4,6 +4,8 @@ import { SaveSurveyResultRepository } from '@/data/protocols/db/survey/save-surv
 import { SurveyResultModel } from '@/domain/models/survey-result'
 import { SaveSurveyResultModel } from '@/domain/usecase/save-survey-result'
 import { DbSaveSurveyResult } from './db-load-surveys'
+import { LoadSurveyResultRepository } from '@/data/protocols/db/survey/load-survey-result'
+import { mockSurveyResultModel } from '@/domain/test/mock-survey-result'
 
 const makeFakeSurveyResult = (): SurveyResultModel => {
   return {
@@ -37,9 +39,10 @@ const makeFakeSaveSurveyResult = (): SaveSurveyResultModel => {
 interface SutTypes {
   sut: DbSaveSurveyResult
   saveSurveysRepositoryStub: SaveSurveyResultRepository
+  loadSurveyByIdRepositoryStub: LoadSurveyResultRepository
 }
 
-const makeLoadSurveysRepository = (): SaveSurveyResultRepository => {
+const makeSaveSurveysRepository = (): SaveSurveyResultRepository => {
   class LoadSurveysRepositoryStub implements SaveSurveyResultRepository {
     async save (data: SaveSurveyResultModel): Promise<SurveyResultModel> {
       return await new Promise<SurveyResultModel>((resolve, reject) => resolve(makeFakeSurveyResult()))
@@ -49,12 +52,28 @@ const makeLoadSurveysRepository = (): SaveSurveyResultRepository => {
   return new LoadSurveysRepositoryStub()
 }
 
+const mockedSurveyResult = mockSurveyResultModel()
+
+const makeLoadSurveyRespositoryStub = (): LoadSurveyResultRepository => {
+  class LoadSurveyResultRepositoryStub implements LoadSurveyResultRepository {
+    async loadBySurveyId (surveyId: string): Promise<SurveyResultModel> {
+      return await new Promise<SurveyResultModel>((resolve, reject) =>
+        resolve(mockedSurveyResult)
+      )
+    }
+  }
+  return new LoadSurveyResultRepositoryStub()
+}
+
 const makeSut = (): SutTypes => {
-  const saveSurveysRepositoryStub = makeLoadSurveysRepository()
-  const sut = new DbSaveSurveyResult(saveSurveysRepositoryStub)
+  const saveSurveysRepositoryStub = makeSaveSurveysRepository()
+  const loadSurveyByIdRepositoryStub = makeLoadSurveyRespositoryStub()
+
+  const sut = new DbSaveSurveyResult(saveSurveysRepositoryStub, loadSurveyByIdRepositoryStub)
   return {
     sut,
-    saveSurveysRepositoryStub
+    saveSurveysRepositoryStub,
+    loadSurveyByIdRepositoryStub
   }
 }
 

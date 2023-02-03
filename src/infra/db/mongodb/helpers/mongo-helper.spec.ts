@@ -5,7 +5,7 @@ describe('Mongo Helper', () => {
 
   beforeAll(async () => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    await sut.connect(url!)
+    await sut.connect(url)
   })
 
   afterAll(async () => {

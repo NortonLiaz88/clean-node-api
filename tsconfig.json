@@ -5,8 +5,9 @@
     "target": "ES2019",
     "esModuleInterop": true,
     "allowJs": true,
-    "strictNullChecks": true,
+    "strictNullChecks": false,
     "resolveJsonModule": true,
+    "noImplicitReturns": false,
     "baseUrl": "src",
     "paths": {
       "@/*": ["*"],

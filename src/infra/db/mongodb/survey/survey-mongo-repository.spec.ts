@@ -9,7 +9,7 @@ describe('Survey Mongo Repository', () => {
   const url = process.env.MONGO_URL
   beforeAll(async () => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    await MongoHelper.connect(url!)
+    await MongoHelper.connect(url)
     MockDate.set(new Date())
   })
 

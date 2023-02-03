@@ -20,7 +20,7 @@ export const forbidden = (error: Error): HttpResponse => ({
 export const serverError = (error: Error): HttpResponse => ({
   statusCode: 500,
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  body: new ServerError(error.stack!)
+  body: new ServerError(error.stack)
 })
 
 export const ok = (data: any): HttpResponse => ({

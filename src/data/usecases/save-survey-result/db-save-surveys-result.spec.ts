@@ -7,10 +7,20 @@ import { DbSaveSurveyResult } from './db-load-surveys'
 
 const makeFakeSurveyResult = (): SurveyResultModel => {
   return {
-    id: 'any_id',
     surveyId: 'any_survey_id',
-    accountId: 'any_account_id',
-    answer: 'any_answer_id',
+    question: 'any_question',
+    answers: [
+      {
+        answer: 'any_answer',
+        count: 1,
+        percent: 50
+      },
+      {
+        answer: 'other_answer',
+        count: 10,
+        percent: 80
+      }
+    ],
     date: new Date()
   }
 }
@@ -18,8 +28,8 @@ const makeFakeSurveyResult = (): SurveyResultModel => {
 const makeFakeSaveSurveyResult = (): SaveSurveyResultModel => {
   return {
     surveyId: 'any_survey_id',
-    accountId: 'any_account_id',
     answer: 'any_answer_id',
+    accountId: 'any_account_id',
     date: new Date()
   }
 }
